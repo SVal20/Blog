@@ -13,3 +13,7 @@ user.update!(
   password: "password",
   password_confirmation: "password"
 )
+
+#100.times do |i|
+#  BlogPost.create title: "Blog ##{i}", content: "Hello this is the post numer #{i}, have a great day."
+#end
