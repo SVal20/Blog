@@ -3,6 +3,11 @@
 <% @blog_posts.each do |blogs| %>
   <div>
     <h2><%= link_to blogs.title, blogs  %></h2>
+    <% if blogs.draft? %>
+      <div class= "p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+    <% elsif blogs.scheduled? %>
+      <div class= "p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
+    <% end %>
     <%= blogs.body %>
   </div>
 <% end %>
