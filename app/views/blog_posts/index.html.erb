@@ -3,6 +3,9 @@
 <% @blog_posts.each do |blogs| %>
   <div>
     <h2><%= link_to blogs.title, blogs  %></h2>
+
+    <%= image_tag blogs.cover_image if blogs.cover_image.present?%>
+
     <% if blogs.draft? %>
       <div class= "p-2 rounded bg-gray-100 text-gray-900">Draft</div>
     <% elsif blogs.scheduled? %>
@@ -11,7 +14,8 @@
     <%= blogs.content %>
   </div>
 <% end %>
-
-<div class="my-16">
-  <%== pagy_nav(@pagy)%>
-</div>
+<% if @pagy.count > @pagy.items %>
+  <div class="my-16">
+    <%== pagy_nav(@pagy)%>
+  </div>
+<%end%>

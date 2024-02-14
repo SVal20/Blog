@@ -5,6 +5,8 @@ class BlogPostsController < ApplicationController
   def index
     @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
     @pagy, @blog_posts = pagy(@blog_posts)
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
   end
 
   def show
@@ -40,7 +42,7 @@ class BlogPostsController < ApplicationController
   end
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :content, :published_at)
+    params.require(:blog_post).permit(:title, :content, :cover_image, :published_at)
   end
 
   private
